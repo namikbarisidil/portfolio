@@ -134,6 +134,15 @@ html {
     animation: fadeInUp 1s ease 0.2s backwards;
 }
 
+.tagline {
+    font-size: 1.15rem;
+    margin-top: -1.2rem;
+    margin-bottom: 2.5rem;
+    font-weight: 500;
+    opacity: 0.85;
+    animation: fadeInUp 1s ease 0.35s backwards;
+}
+
 .cta-button {
     display: inline-block;
     padding: 1rem 2.5rem;
