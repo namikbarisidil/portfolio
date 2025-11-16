@@ -1,8 +1,13 @@
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        // Skip if it's just "#" (dropdown toggle) or if parent is a dropdown
+        if (href === '#' || this.parentElement.classList.contains('dropdown')) {
+            return;
+        }
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const target = document.querySelector(href);
         if (target) {
             target.scrollIntoView({
                 behavior: 'smooth',
@@ -219,11 +224,18 @@ if (mobileMenuToggle) {
         navLinks.classList.toggle('active');
     });
 
-    // Close menu when clicking on a link
+    // Close menu when clicking on a link (but not dropdown toggles or dropdown items on desktop)
     document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenuToggle.classList.remove('active');
-            navLinks.classList.remove('active');
+        link.addEventListener('click', (e) => {
+            // Don't close if it's a dropdown toggle
+            if (link.parentElement.classList.contains('dropdown')) {
+                return;
+            }
+            // Only close mobile menu if it's actually open
+            if (navLinks.classList.contains('active')) {
+                mobileMenuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
         });
     });
 
@@ -235,6 +247,49 @@ if (mobileMenuToggle) {
         }
     });
 }
+
+// Dropdown menu functionality - simplified
+(function() {
+    function initDropdowns() {
+        // Close dropdown when clicking on dropdown menu items
+        const dropdownLinks = document.querySelectorAll('.dropdown-menu a');
+        
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                const dropdown = this.closest('.dropdown');
+                if (dropdown) {
+                    dropdown.classList.add('force-hide');
+                    
+                    // Remove force-hide after a delay
+                    setTimeout(() => {
+                        dropdown.classList.remove('force-hide');
+                    }, 1000);
+                }
+            });
+        });
+        
+        // Mobile dropdown toggle
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            const toggle = dropdown.querySelector('a');
+            if (toggle) {
+                toggle.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 968) {
+                        e.preventDefault();
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            }
+        });
+    }
+
+    // Initialize when ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initDropdowns);
+    } else {
+        initDropdowns();
+    }
+})();
 
 // Calculate and update years of experience dynamically
 function updateYearsOfExperience() {

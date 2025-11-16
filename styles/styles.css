@@ -198,6 +198,92 @@ html {
     color: #33ff33;
 }
 
+/* Dropdown Menu */
+.nav-links li {
+    position: relative;
+}
+
+.nav-links .dropdown {
+    position: relative;
+}
+
+.nav-links .dropdown > a {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.nav-links .dropdown > a::after {
+    content: '▼';
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+}
+
+.nav-links .dropdown:hover > a::after {
+    transform: rotate(180deg);
+}
+
+.nav-links .dropdown:hover > a {
+    color: #33ff33;
+}
+
+.dropdown-menu {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    border: 1px solid #33ff33;
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    min-width: 180px;
+    margin-top: 0;
+    padding-top: 1rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.dropdown-menu li {
+    margin: 0;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.7rem 1.2rem;
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+    background: rgba(51, 255, 51, 0.1);
+    padding-left: 1.5rem;
+    color: #33ff33;
+}
+
+.nav-links .dropdown:hover .dropdown-menu,
+.nav-links .dropdown.show .dropdown-menu,
+.nav-links .dropdown.active .dropdown-menu,
+.nav-links .dropdown:focus-within .dropdown-menu {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    display: block !important;
+}
+
+.nav-links .dropdown.force-hide .dropdown-menu {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    display: none !important;
+}
+
 /* Mobile Menu Toggle */
 .mobile-menu-toggle {
     display: none;
@@ -680,6 +766,82 @@ section {
     line-height: 1.6;
 }
 
+/* Certifications Section */
+.certifications {
+    background-color: var(--bg-color);
+    padding: 4rem 0;
+}
+
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.cert-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 4px solid #10b981;
+}
+
+.cert-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.cert-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.cert-card h3 {
+    font-size: 1.3rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.cert-issuer {
+    font-weight: 600;
+    color: #10b981;
+    margin-bottom: 0.3rem;
+}
+
+.cert-date {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.cert-description {
+    color: var(--text-light);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.cert-link {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.cert-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
 /* Contact Section */
 .contact-content {
     text-align: center;
@@ -802,6 +964,32 @@ section {
         font-size: 1.2rem;
         display: block;
         padding: 0.5rem;
+    }
+
+    /* Mobile dropdown */
+    .dropdown-menu {
+        position: static;
+        opacity: 0;
+        visibility: hidden;
+        max-height: 0;
+        overflow: hidden;
+        margin-top: 0;
+        border: none;
+        border-top: 1px solid #33ff33;
+        border-radius: 0;
+        background: rgba(0, 0, 0, 0.8);
+        transition: opacity 0.3s ease, visibility 0.3s ease, max-height 0.3s ease, margin-top 0.3s ease;
+    }
+
+    .dropdown.active .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        max-height: 500px;
+        margin-top: 0.5rem;
+    }
+
+    .dropdown > a::after {
+        margin-left: auto;
     }
 
     .language-switcher {
