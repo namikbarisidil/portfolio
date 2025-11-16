@@ -92,7 +92,7 @@ const languageSwitcher = {
     switchLanguage(lang) {
         this.currentLang = lang;
         localStorage.setItem('preferredLanguage', lang);
-        
+
         // Update active button
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.classList.remove('active');
@@ -100,7 +100,7 @@ const languageSwitcher = {
                 btn.classList.add('active');
             }
         });
-        
+
         // Update all elements with language data attributes
         document.querySelectorAll('[data-lang-' + lang + ']').forEach(element => {
             const text = element.getAttribute('data-lang-' + lang);
@@ -110,9 +110,12 @@ const languageSwitcher = {
                 element.innerHTML = text;
             }
         });
-        
+
         // Update HTML lang attribute
         document.documentElement.lang = lang;
+
+        // Dispatch custom event for language change
+        window.dispatchEvent(new Event('languageChanged'));
     }
 };
 

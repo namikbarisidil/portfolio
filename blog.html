@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Articles and musings by Baris Idil on technology, software architecture, science fiction, space exploration, and life">
+    <title>Blog - Baris Idil</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/blog.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-line1">Building the Future</span><br>
+                    <span class="logo-line2">&gt; Execute? (Y/N)</span><span class="cursor">_</span>
+                </a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#projects">Experience</a></li>
+                <li><a href="index.html#education">Education</a></li>
+                <li><a href="index.html#publications">Books</a></li>
+                <li><a href="index.html#articles">Articles</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="language-switcher">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="de">DE</button>
+                <button class="lang-btn" data-lang="tr">TR</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Header -->
+    <section class="blog-header">
+        <div class="container">
+            <h1 class="blog-title" data-lang-en="Blog" data-lang-de="Blog" data-lang-tr="Blog">Blog</h1>
+            <p class="blog-subtitle" data-lang-en="Thoughts on technology, science fiction, space, and everything in between" data-lang-de="Gedanken über Technologie, Science-Fiction, Weltraum und alles dazwischen" data-lang-tr="Teknoloji, bilim kurgu, uzay ve aradaki her şey hakkında düşünceler">Thoughts on technology, science fiction, space, and everything in between</p>
+        </div>
+    </section>
+
+    <!-- Blog Posts -->
+    <section class="blog-posts">
+        <div class="container">
+            <!-- Category Filter -->
+            <div class="blog-filter">
+                <button class="filter-btn active" data-category="all">
+                    <span class="filter-icon">🌐</span>
+                    <span class="filter-label" data-lang-en="All" data-lang-de="Alle" data-lang-tr="Hepsi">All</span>
+                </button>
+                <button class="filter-btn" data-category="technology">
+                    <span class="filter-icon">💻</span>
+                    <span class="filter-label" data-lang-en="Technology" data-lang-de="Technologie" data-lang-tr="Teknoloji">Technology</span>
+                </button>
+                <button class="filter-btn" data-category="science-fiction">
+                    <span class="filter-icon">📚</span>
+                    <span class="filter-label" data-lang-en="Sci-Fi" data-lang-de="Sci-Fi" data-lang-tr="Bilim Kurgu">Sci-Fi</span>
+                </button>
+                <button class="filter-btn" data-category="space">
+                    <span class="filter-icon">🚀</span>
+                    <span class="filter-label" data-lang-en="Space" data-lang-de="Weltraum" data-lang-tr="Uzay">Space</span>
+                </button>
+                <button class="filter-btn" data-category="gaming">
+                    <span class="filter-icon">🎮</span>
+                    <span class="filter-label" data-lang-en="Gaming" data-lang-de="Gaming" data-lang-tr="Oyun">Gaming</span>
+                </button>
+                <button class="filter-btn" data-category="life">
+                    <span class="filter-icon">💭</span>
+                    <span class="filter-label" data-lang-en="Life" data-lang-de="Leben" data-lang-tr="Yaşam">Life</span>
+                </button>
+            </div>
+
+            <div class="blog-grid" id="blogGrid">
+                <!-- Blog posts will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <span class="current-year">2025</span> Baris Idil. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="scripts/script.js"></script>
+    <script src="scripts/blog.js"></script>
+</body>
+</html>
