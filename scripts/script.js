@@ -127,7 +127,8 @@ if (document.readyState === 'loading') {
 function typeTerminalText() {
     const line1 = document.querySelector('.logo-line1');
     const line2 = document.querySelector('.logo-line2');
-    if (!line1 || !line2) return;
+    const cursor = document.querySelector('.cursor');
+    if (!line1 || !line2 || !cursor) return;
     
     const currentLang = languageSwitcher.currentLang;
     const texts1 = {
@@ -147,17 +148,23 @@ function typeTerminalText() {
     
     line1.textContent = '';
     line2.textContent = '';
+    cursor.style.display = 'inline';
     
     const typeInterval = setInterval(() => {
         if (charIndex < fullText1.length) {
             line1.textContent = fullText1.substring(0, charIndex + 1);
+            // Move cursor to end of line1
+            line1.appendChild(cursor);
             charIndex++;
         } else if (charIndex < fullText1.length + fullText2.length) {
             const line2Index = charIndex - fullText1.length;
             line2.textContent = fullText2.substring(0, line2Index + 1);
+            // Move cursor to end of line2
+            line2.appendChild(cursor);
             charIndex++;
         } else {
             clearInterval(typeInterval);
+            // Keep cursor at the end after typing is complete
         }
     }, 50);
 }
