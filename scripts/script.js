@@ -122,3 +122,79 @@ if (document.readyState === 'loading') {
 } else {
     languageSwitcher.init();
 }
+
+// Typing animation for terminal logo
+function typeTerminalText() {
+    const line1 = document.querySelector('.logo-line1');
+    const line2 = document.querySelector('.logo-line2');
+    if (!line1 || !line2) return;
+    
+    const currentLang = languageSwitcher.currentLang;
+    const texts1 = {
+        'en': 'Building the Future',
+        'de': 'Die Zukunft wird gebaut',
+        'tr': 'Gelecek İnşa Ediliyor'
+    };
+    const texts2 = {
+        'en': '> Execute? (Y/N)',
+        'de': '> Ausführen? (J/N)',
+        'tr': '> Çalıştır? (E/H)'
+    };
+    
+    const fullText1 = texts1[currentLang];
+    const fullText2 = texts2[currentLang];
+    let charIndex = 0;
+    
+    line1.textContent = '';
+    line2.textContent = '';
+    
+    const typeInterval = setInterval(() => {
+        if (charIndex < fullText1.length) {
+            line1.textContent = fullText1.substring(0, charIndex + 1);
+            charIndex++;
+        } else if (charIndex < fullText1.length + fullText2.length) {
+            const line2Index = charIndex - fullText1.length;
+            line2.textContent = fullText2.substring(0, line2Index + 1);
+            charIndex++;
+        } else {
+            clearInterval(typeInterval);
+        }
+    }, 50);
+}
+
+// Run typing animation on load
+window.addEventListener('load', () => {
+    setTimeout(typeTerminalText, 200);
+});
+
+// 3D card hover effects
+document.querySelectorAll('.experience-item, .education-item, .publication-card, .article-item').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 20;
+        const rotateY = (centerX - x) / 20;
+        
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+    });
+});
+
+// Scroll progress bar
+const progressBar = document.createElement('div');
+progressBar.className = 'scroll-progress';
+document.body.appendChild(progressBar);
+
+window.addEventListener('scroll', () => {
+    const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (window.scrollY / windowHeight) * 100;
+    progressBar.style.width = scrolled + '%';
+});
