@@ -159,6 +159,7 @@ section {
     color: var(--text-light);
     margin-bottom: 1rem;
     line-height: 1.8;
+    text-align: justify;
 }
 
 /* Projects Section */
