@@ -27,26 +27,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Scroll to top button
-const scrollToTopBtn = document.getElementById('scrollToTop');
-
-if (scrollToTopBtn) {
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            scrollToTopBtn.classList.add('visible');
-        } else {
-            scrollToTopBtn.classList.remove('visible');
-        }
-    });
-
-    scrollToTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-}
-
 // Animate skill bars when they come into view
 const observerOptions = {
     threshold: 0.5,
@@ -132,7 +112,12 @@ const languageSwitcher = {
             if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
                 element.placeholder = text;
             } else {
-                element.innerHTML = text;
+                // Use textContent for links and buttons to preserve attributes
+                if (element.tagName === 'A' || element.tagName === 'BUTTON') {
+                    element.textContent = text;
+                } else {
+                    element.innerHTML = text;
+                }
             }
         });
 
@@ -202,8 +187,8 @@ window.addEventListener('load', () => {
     setTimeout(typeTerminalText, 200);
 });
 
-// 3D card hover effects
-document.querySelectorAll('.experience-item, .education-item, .publication-card, .article-item').forEach(card => {
+// 3D card hover effects (excluding publication-card and article-item to prevent link interference)
+document.querySelectorAll('.experience-item, .education-item').forEach(card => {
     card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
