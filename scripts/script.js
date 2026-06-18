@@ -371,3 +371,6 @@ function updateYearsOfExperience() {
 
 // Run on page load
 updateYearsOfExperience();
+
+// Re-run when language changes (DE/TR translations recreate .years-of-experience spans)
+window.addEventListener('languageChanged', updateYearsOfExperience);
